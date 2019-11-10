@@ -11,7 +11,7 @@ import { Subscription, Observable } from 'rxjs';
 })
 export class SearchComponent implements OnInit {
   private subscription: Subscription;
-  private isLoading$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
   // @TODO: HANDLE BACK FROM DETAILS TO SAME RESULTS...
   displayedColumns: string[] = ['title', 'author', 'publication', 'details'];
   books = new MatTableDataSource<any>();
