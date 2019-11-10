@@ -11,7 +11,10 @@ import { MatToolbarModule,
   MatButtonModule,
   MatTableModule,
   MatDividerModule,
-  MatProgressSpinnerModule } from '@angular/material';
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +46,9 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     MatTableModule,
     MatDividerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
