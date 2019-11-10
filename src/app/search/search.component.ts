@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
 import { BooksService } from '../books/books.service';
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class SearchComponent implements OnInit {
   private subscription: Subscription;
+  private isLoading: boolean;
 
   displayedColumns: string[] = ['title', 'author', 'publication', 'details'];
   books = new MatTableDataSource<any>();
@@ -20,6 +21,7 @@ export class SearchComponent implements OnInit {
               private bookService: BooksService) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.subscription = this.route.queryParams.subscribe(params => {
       this.searchBooks(params['query']);
     });
@@ -31,7 +33,7 @@ export class SearchComponent implements OnInit {
 
   async searchBooks(query: string) {
     const results = await this.bookService.searchBooks(query);
-
+    this.isLoading = await false;
     this.books.data = results.docs;
   }
 
