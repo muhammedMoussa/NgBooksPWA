@@ -1,6 +1,6 @@
-<mat-spinner *ngIf="isLoading" style="margin: 10% auto"></mat-spinner>
-<h1 class="h1">{{ isLoading ? 'Loading..' : 'Search Results'}}</h1>
-<div *ngIf="!isLoading" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" class="products">
+<mat-spinner *ngIf="(isLoading$ | async)" style="margin: 10% auto"></mat-spinner>
+<h1 class="h1">{{ (isLoading$ | async)?  'Loading..' : 'Search Results'}}</h1>
+<div *ngIf="!(isLoading$ | async)" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" class="products">
   <table mat-table fxFlex="100%" fxFlex.gt-sm="66%" [dataSource]="books" class="mat-elevation-z1">
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Title</th>

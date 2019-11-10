@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const baseUrl = 'https://openlibrary.org';
 
@@ -7,6 +8,7 @@ const baseUrl = 'https://openlibrary.org';
   providedIn: 'root'
 })
 export class BooksService {
+  isLoading$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +33,13 @@ export class BooksService {
   }
 
   searchBooks(query: string) {
-    return this.get('/search.json', {title: query});
+    try {
+      return this.get('/search.json', {title: query});
+    } catch (error) {
+      this.setLoading(false);
+    }
   }
+
+  getLoading = (): Observable<boolean> => this.isLoading$.asObservable();
+  setLoading = (loading: boolean): void => this.isLoading$.next(loading);
 }
