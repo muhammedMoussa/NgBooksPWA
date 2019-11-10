@@ -1,6 +1,6 @@
 {
-  "name": "AngularBooksPWA",
-  "short_name": "AngularBooksPWA",
+  "name": "NgBooksPWA",
+  "short_name": "NgBooksPWA",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

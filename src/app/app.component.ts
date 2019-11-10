@@ -10,7 +10,7 @@ import { BooksService } from './books/books.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AngularBooksPWA';
+  title = 'NgBooksPWA';
   searchForm: FormGroup;
   offline: boolean;
 
