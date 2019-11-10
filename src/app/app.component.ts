@@ -12,6 +12,7 @@ import { BooksService } from './books/books.service';
 export class AppComponent {
   title = 'AngularBooksPWA';
   searchForm: FormGroup;
+  offline: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router) {
@@ -21,8 +22,14 @@ export class AppComponent {
     this.searchForm = this.formBuilder.group({
       search: ['', Validators.required],
     });
+    window.addEventListener('online',  this.onNetworkStatusChange.bind(this));
+    window.addEventListener('offline', this.onNetworkStatusChange.bind(this));
   }
 
+  onNetworkStatusChange() {
+    this.offline = !navigator.onLine;
+    console.log('offline ' + this.offline);
+  }
   onSearch() {
     if (!this.searchForm.valid) return;
     this.router.navigate(['search'], { queryParams: {query: this.searchForm.get('search').value}});
